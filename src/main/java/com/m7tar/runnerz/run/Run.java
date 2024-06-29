@@ -8,7 +8,7 @@ public record Run(
         @Positive
         Integer id,
         @NotEmpty
-        String tittle,
+        String title,
         LocalDateTime startedOn,
         LocalDateTime CompletedOn,
         @Positive
