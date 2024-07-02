@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
 
+
 public record Run(
         @Positive
         Integer id,
@@ -15,6 +16,7 @@ public record Run(
         Integer kilometers,
         Location location
 ) {
+
     public Run {
         if (!completedOn.isAfter(startedOn)) {
             throw new IllegalArgumentException("Completed On must be after started On");

@@ -19,7 +19,7 @@ public class RunRepository {
     }
 
     public List<Run> findAll(){
-        return jdbcClient.sql("select * from Run")
+        return jdbcClient.sql("SELECT * FROM Run")
                 .query(Run.class) //map the results to a Run
                 .list(); //returns a list
     }
@@ -37,7 +37,7 @@ public class RunRepository {
         Assert.state(updated == 1, "Failed to create run " + run.title());
     }
     public void update(Run run, Integer id) {
-        var updated = jdbcClient.sql("UPDATE run SET title = ?, started_on = ?, completed_on = ?, KILOMETERS = ?, location = ? WHERE id = ?")
+        var updated = jdbcClient.sql("UPDATE Run SET title = ?, started_on = ?, completed_on = ?, KILOMETERS = ?, location = ? WHERE id = ?")
                 .params(List.of(run.title(),run.startedOn(),run.completedOn(),run.kilometers(),run.location().toString(), id))
                 .update();
 
@@ -45,7 +45,7 @@ public class RunRepository {
     }
 
     public void delete(Integer id) {
-        var updated = jdbcClient.sql("DELETE FROM run WHERE id = :id")
+        var updated = jdbcClient.sql("DELETE FROM Run WHERE id = :id")
                 .param("id", id)
                 .update();
 
@@ -53,7 +53,7 @@ public class RunRepository {
     }
 
     public int count() {
-        return jdbcClient.sql("select * from run").query().listOfRows().size();
+        return jdbcClient.sql("SELECT * FROM Run").query().listOfRows().size();
     }
 
     public void saveAll(List<Run> runs) {
@@ -61,7 +61,7 @@ public class RunRepository {
     }
 
     public List<Run> findByLocation(String location) {
-        return jdbcClient.sql("select * from run where location = :location")
+        return jdbcClient.sql("SELECT * FROM Run WHERE location = :location")
                 .param("location", location)
                 .query(Run.class)
                 .list();
