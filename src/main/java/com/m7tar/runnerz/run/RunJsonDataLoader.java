@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +15,11 @@ public class RunJsonDataLoader implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(RunJsonDataLoader.class);
     private final ObjectMapper objectMapper;
-    private final RunRepository runRepo;
+    private final JdbcClientRunRepository runRepo;
 
-    public RunJsonDataLoader(ObjectMapper objectMapper, RunRepository runRepository) {
+    public RunJsonDataLoader(ObjectMapper objectMapper, JdbcClientRunRepository jdbcClientRunRepository) {
         this.objectMapper = objectMapper;
-        this.runRepo = runRepository;
+        this.runRepo = jdbcClientRunRepository;
     }
 
     @Override

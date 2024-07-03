@@ -1,11 +1,14 @@
 package com.m7tar.runnerz.run;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 
 import java.time.LocalDateTime;
 
 
 public record Run(
+        @Id
         @Positive
         Integer id,
         @NotEmpty
@@ -14,7 +17,9 @@ public record Run(
         LocalDateTime completedOn,
         @Positive
         Integer kilometers,
-        Location location
+        Location location,
+        @Version
+        Integer version
 ) {
 
     public Run {
