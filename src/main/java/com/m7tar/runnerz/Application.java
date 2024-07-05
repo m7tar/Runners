@@ -2,6 +2,8 @@ package com.m7tar.runnerz;
 
 import com.m7tar.runnerz.run.Location;
 import com.m7tar.runnerz.run.Run;
+import com.m7tar.runnerz.user.User;
+import com.m7tar.runnerz.user.UserRestClient;
 import foo.bar.WelcomeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @SpringBootApplication
 public class Application {
@@ -42,9 +45,11 @@ public class Application {
 	}
 	//this is a command line runner. it runs after the application has started and after the application context has been created.
 	@Bean
-	CommandLineRunner runner() {
+	CommandLineRunner runner(UserRestClient client) {
 		return args -> {
 			//Run run = new Run(3, "myRun", LocalDateTime.now(), LocalDateTime.now().plusHours(4), 4, Location.INDOOR);
+			User users = client.findById(1);
+			System.out.println(users);
 		};
     }
 }
